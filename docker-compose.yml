@@ -2,7 +2,7 @@ alfresco:
   environment:
     CIFS_ENABLED: 'false'
     FTP_ENABLED: 'false'
-  image: webcenter/rancher-alfresco:v5.1-201605-1
+  image: webcenter/rancher-alfresco:5.2-201612GA
   links:
   - postgres:db
 postgres:
