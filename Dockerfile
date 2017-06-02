@@ -28,6 +28,9 @@ COPY assets/setup/ldap-authentication.properties ${ALF_HOME}/tomcat/shared/class
 # Logrotate
 COPY assets/setup/logrotate-alfresco.conf /etc/logrotate.d/alfresco
 
+# Libreoffice
+COPY assets/setup/libreoffice_ctl.sh /opt/alfresco/libreoffice/scripts/
+
 # init scripts
 COPY assets/init.py /app/
 COPY assets/run.sh /app/
