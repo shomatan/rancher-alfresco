@@ -1,14 +1,26 @@
-alfresco:
-  environment:
-    CIFS_ENABLED: 'false'
-    FTP_ENABLED: 'false'
-  image: webcenter/rancher-alfresco:5.2-201612GA
-  links:
-  - postgres:db
-postgres:
-  environment:
-    PGDATA: /var/lib/postgresql/data/pgdata
-    POSTGRES_DB: alfresco
-    POSTGRES_PASSWORD: 70Q83feNcsfG
-    POSTGRES_USER: alfresco
-  image: postgres:9.4
+version: '2'
+
+services:
+  alfresco:
+    container_name: alfresco
+    image: ubuntu:16.04
+    build: .
+    environment:
+      CIFS_ENABLED: 'false'
+      FTP_ENABLED: 'false'
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    volumes:
+      - ./volumes/alfresco:/opt/alfresco/alf_data
+
+  db:
+    container_name: alfresco-postgres
+    image: postgres:9.4
+    environment:
+      POSTGRES_DB: alfresco
+      POSTGRES_PASSWORD: 70Q83feNcsfG
+      POSTGRES_USER: alfresco
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
